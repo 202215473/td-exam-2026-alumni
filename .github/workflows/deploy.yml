@@ -66,4 +66,3 @@ jobs:
         kubectl rollout status deployment/deploy-store
 
         kubectl get services -o wide
-
