@@ -6,12 +6,12 @@ on:
       - main
 
 env:
-  PROJECT_ID: ${{ secrets.GCP_PROJECT }}
-  GKE_CLUSTER: ${{ secrets.GCE_CLUSTER_NAME }}
-  GKE_ZONE: ${{ secrets.GCP_ZONE }}
-  IMAGE_NAME_ROUTER: gcr.io/${{ secrets.GCP_PROJECT }}/router
-  IMAGE_NAME_API: gcr.io/${{ secrets.GCP_PROJECT }}/api-gw
-  IMAGE_NAME_STORE: gcr.io/${{ secrets.GCP_PROJECT }}/backend-storage
+  PROJECT_ID: ${{ vars.GCP_PROJECT }}
+  GKE_CLUSTER: ${{ vars.GCE_CLUSTER_NAME }}
+  GKE_ZONE: ${{ vars.GCP_ZONE }}
+  IMAGE_NAME_ROUTER: gcr.io/${{ vars.GCP_PROJECT }}/router
+  IMAGE_NAME_API: gcr.io/${{ vars.GCP_PROJECT }}/api-gw
+  IMAGE_NAME_STORE: gcr.io/${{ vars.GCP_PROJECT }}/backend-storage
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -66,4 +66,3 @@ jobs:
         kubectl rollout status deployment/deploy-api
         
         kubectl get services -o wide
-
