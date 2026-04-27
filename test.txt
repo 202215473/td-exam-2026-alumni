@@ -1,0 +1,15 @@
+# Create user 1
+curl -X POST http://34.178.59.4/user/1 \
+  -H "Content-Type: application/json" \
+  -d '{"name":"Rogelio Martínez","role":"specialist","age":20}'
+
+# Create user 2
+curl -X POST http://34.178.59.4/user/2 \
+  -H "Content-Type: application/json" \
+  -d '{"name":"Juan Vicente Herrera","role":"specialist","age":43}'
+
+# Get user 1
+curl -X GET http://34.178.59.4/user/1
+
+# Get user 2
+curl -X GET http://34.178.59.4/user/2
