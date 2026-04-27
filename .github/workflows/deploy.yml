@@ -53,17 +53,17 @@ jobs:
     - name: Deploy to GKE
       run: |
         gcloud container clusters get-credentials $GKE_CLUSTER --zone $GKE_ZONE
-        kubectl apply -f deploy-router.yaml
-        kubectl apply -f deploy-api.yaml
-        kubectl apply -f deploy-store.yaml
         
-        kubectl set image deployment/deploy-router router=$IMAGE_NAME_ROUTER:$GITHUB_SHA
-        kubectl set image deployment/deploy-api api-gw=$IMAGE_NAME_API:$GITHUB_SHA
-        kubectl set image deployment/deploy-store backend-storage=$IMAGE_NAME_STORE:$GITHUB_SHA
-
-        kubectl rollout status deployment/deploy-router
+        # Process manifests to replace PROJECT_ID placeholder
+        export PROJECT_ID=${{ secrets.GCP_PROJECT }}
+        for file in k8s/*.yaml; do
+          envsubst < "$file" | kubectl apply -f -
+        done
+        
+        # Verify deployments
+        kubectl rollout status sts/sts-router
+        kubectl rollout status sts/sts-storage
         kubectl rollout status deployment/deploy-api
-        kubectl rollout status deployment/deploy-store
-
+        
         kubectl get services -o wide
 

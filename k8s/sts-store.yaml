@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: storage
-          image: gcr.io/${{ gcp-project }}/backend-storage
+          image: gcr.io/${PROJECT_ID}/backend-storage
           ports:
             - containerPort: 3000
           volumeMounts:
