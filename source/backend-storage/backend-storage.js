@@ -88,7 +88,6 @@ app.post("/user-profile/:id", (req, res) => {
     const profile = {
       userid: id,
       name: req.body.name,
-      role: req.body.role,
       age: req.body.age
     };
 
