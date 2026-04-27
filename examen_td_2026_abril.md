@@ -12,7 +12,7 @@
 - C) Ejecuta contenedores directamente
 - D) Puede usar afinidad/anti-afinidad
 
-**Solución:** A, B, C
+**Solución:** A, B
 
 ## **2. Sobre el API Server, elige las respuestas correctas:**
 
