@@ -8,7 +8,7 @@ terraform {
 }
 
 provider "google" {
-  credentials = file("<placeholder>")
+  credentials = file("../td-lab-494513-0b16904eb0cb.json")
 
   project = var.gcp-project
   region  = var.gcp-region
